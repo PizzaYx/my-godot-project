@@ -1,0 +1,22 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+# Godot 生成的临时文件
+.import/
+.meta/
+*.pck
+*.xci
+*.gdnlib.user
+*.scenario
+*.tscn.tmp
+*.tscn.autosave
+*.arr.autosave
+
+# 编译后的文件
+bin/
+obj/
+build/
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
