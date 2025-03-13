@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmb5iwotjx4aq"]
+[gd_scene load_steps=15 format=3 uid="uid://dmb5iwotjx4aq"]
 
 [ext_resource type="Script" uid="uid://cefurpnr00yan" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://bk4epb0f8q4og" path="res://AssetBundle/Sprites/Foxy.png" id="1_v0iea"]
@@ -86,6 +86,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvnsp"]
+radius = 13.0384
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 script = ExtResource("1_cvnsp")
 move_speed = 100.0
@@ -95,4 +98,7 @@ animator = NodePath("AnimatedSprite2D")
 sprite_frames = SubResource("SpriteFrames_x3wgy")
 animation = &"run"
 autoplay = "idle"
-frame_progress = 0.382058
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_cvnsp")
