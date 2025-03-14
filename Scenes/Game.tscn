@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqup1mb8wyw7m"]
+[gd_scene load_steps=6 format=3 uid="uid://dqup1mb8wyw7m"]
 
 [ext_resource type="Texture2D" uid="uid://cmj66m4607rnh" path="res://AssetBundle/Sprites/ForestBackground.png" id="1_iukft"]
+[ext_resource type="Script" uid="uid://cmv4khh0csb1r" path="res://Scripts/GameManager.gd" id="1_kldst"]
 [ext_resource type="PackedScene" uid="uid://dmb5iwotjx4aq" path="res://Scenes/player.tscn" id="2_gl6un"]
 [ext_resource type="PackedScene" uid="uid://2m68mdrarjoj" path="res://Scenes/slime.tscn" id="3_j5yw3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gl6un"]
 distance = -132.0
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("slime_timer")]
+y_sort_enabled = true
+script = ExtResource("1_kldst")
+slime_scene = ExtResource("3_j5yw3")
+slime_timer = NodePath("Timer")
 
 [node name="BackGround1" type="Sprite2D" parent="."]
 position = Vector2(-120, 0)
@@ -54,10 +59,12 @@ shape = SubResource("WorldBoundaryShape2D_gl6un")
 [node name="StaticBody2D4" type="StaticBody2D" parent="Boundary"]
 position = Vector2(1, 2)
 rotation = 0.00913965
-scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundary/StaticBody2D4"]
 shape = SubResource("WorldBoundaryShape2D_gl6un")
 
-[node name="Area2D" parent="." instance=ExtResource("3_j5yw3")]
-position = Vector2(197, 69)
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_spawn_slime"]
